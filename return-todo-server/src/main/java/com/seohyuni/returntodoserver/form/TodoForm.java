@@ -19,7 +19,7 @@ public class TodoForm {
     @AllArgsConstructor
     public static class GetAll {
 
-      @ApiModelProperty(value = "완료여부")
+      @ApiModelProperty(value = "Todo 완료여부")
       private Boolean complete;
 
       @ApiModelProperty(value = "태그 식별번호")
@@ -34,7 +34,7 @@ public class TodoForm {
     @AllArgsConstructor
     public static class Add {
 
-      @ApiModelProperty(value = "내용", required = true)
+      @ApiModelProperty(value = "Todo 내용", required = true)
       private String content;
 
       @ApiModelProperty(value = "태그 식별번호")
@@ -49,7 +49,7 @@ public class TodoForm {
     @AllArgsConstructor
     public static class Update {
 
-      @ApiModelProperty(value = "내용", required = true)
+      @ApiModelProperty(value = "Todo 내용", required = true)
       private String content;
 
       @ApiModelProperty(value = "태그 식별번호")
@@ -67,16 +67,16 @@ public class TodoForm {
     @AllArgsConstructor
     public static class GetAll {
 
-      @ApiModelProperty(value = "식별번호")
+      @ApiModelProperty(value = "Todo 식별번호")
       private Long id;
 
-      @ApiModelProperty(value = "내용")
+      @ApiModelProperty(value = "Todo 내용")
       private String content;
 
-      @ApiModelProperty(value = "완료여부")
+      @ApiModelProperty(value = "Todo 완료여부")
       private Boolean complete;
 
-      @ApiModelProperty(value = "생성일시")
+      @ApiModelProperty(value = "Todo 생성일시")
       private LocalDateTime createdAt;
 
       @ApiModelProperty(value = "태그 식별번호")
@@ -96,16 +96,16 @@ public class TodoForm {
     @AllArgsConstructor
     public static class Get {
 
-      @ApiModelProperty(value = "식별번호")
+      @ApiModelProperty(value = "Todo 식별번호")
       private Long id;
 
-      @ApiModelProperty(value = "내용")
+      @ApiModelProperty(value = "Todo 내용")
       private String content;
 
-      @ApiModelProperty(value = "완료여부")
+      @ApiModelProperty(value = "Todo 완료여부")
       private Boolean complete;
 
-      @ApiModelProperty(value = "생성일시")
+      @ApiModelProperty(value = "Todo 생성일시")
       private LocalDateTime createdAt;
 
       @ApiModelProperty(value = "태그 식별번호")
