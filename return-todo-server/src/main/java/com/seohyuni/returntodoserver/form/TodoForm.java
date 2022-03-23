@@ -47,7 +47,7 @@ public class TodoForm {
     @ToString
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Modify {
+    public static class Update {
 
       @ApiModelProperty(value = "내용", required = true)
       private String content;
@@ -79,6 +79,9 @@ public class TodoForm {
       @ApiModelProperty(value = "생성일시")
       private LocalDateTime createdAt;
 
+      @ApiModelProperty(value = "태그 식별번호")
+      private Long tagId;
+
       @ApiModelProperty(value = "태그 이름")
       private String tagName;
 
@@ -104,6 +107,9 @@ public class TodoForm {
 
       @ApiModelProperty(value = "생성일시")
       private LocalDateTime createdAt;
+
+      @ApiModelProperty(value = "태그 식별번호")
+      private Long tagId;
 
       @ApiModelProperty(value = "태그 이름")
       private String tagName;

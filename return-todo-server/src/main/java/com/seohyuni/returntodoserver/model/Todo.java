@@ -57,6 +57,14 @@ public class Todo {
     this.createdAt = LocalDateTime.now();
   }
 
+  public void toggleComplete() {
+    this.complete = !this.complete;
+  }
+
+  public Long getTagId() {
+    return this.tag != null ? this.tag.getId() : null;
+  }
+
   public String getTagName() {
     return this.tag != null ? this.tag.getName() : null;
   }

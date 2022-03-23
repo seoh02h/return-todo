@@ -17,4 +17,6 @@ public abstract class TodoFormMapper {
   public abstract Todo toTodo(TodoForm.Input.Add in);
 
   public abstract TodoForm.Output.Get toGet(Todo in);
+
+  public abstract TodoForm.Output.GetAll toGetAll(Todo in);
 }
