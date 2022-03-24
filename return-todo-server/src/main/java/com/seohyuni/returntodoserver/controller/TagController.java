@@ -5,6 +5,7 @@ import com.seohyuni.returntodoserver.service.TagService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +42,7 @@ public class TagController {
   @SneakyThrows
   @ApiOperation("태그 생성")
   @PostMapping("/tag/{id}")
-  public TagForm.Output.Get add(@RequestBody TagForm.Input.Add in) {
+  public TagForm.Output.Get add(@RequestBody @Valid TagForm.Input.Add in) {
     return service.add(in);
   }
 
