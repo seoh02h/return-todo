@@ -32,21 +32,24 @@ public class Todo {
   /**
    * 내용
    */
-  @Column
+  @Column(nullable = false)
   private String content;
 
   /**
    * 완료여부
    */
-  @Column
+  @Column(nullable = false)
   private Boolean complete;
 
   /**
    * 생성일시
    */
-  @Column
+  @Column(nullable = false)
   private LocalDateTime createdAt;
 
+  /**
+   * 태그
+   */
   @ManyToOne(targetEntity = Tag.class, fetch = FetchType.LAZY)
   @JoinColumn(name = "tag_id", nullable = true)
   private Tag tag;

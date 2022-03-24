@@ -1,12 +1,10 @@
 package com.seohyuni.returntodoserver.model;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,16 +27,13 @@ public class Tag {
   /**
    * 이름
    */
-  @Column
+  @Column(nullable = false)
   private String name;
 
   /**
    * 색상코드
    */
-  @Column
+  @Column(nullable = false)
   private String colorCode;
-
-  @OneToMany(mappedBy = "tag")
-  private List<Todo> todoList;
 
 }

@@ -40,7 +40,7 @@ public class TodoController {
   @ApiOperation("Todo 페이징 조회")
   @GetMapping("/todo/page")
   public Page<TodoForm.Output.GetAll> getPage(TodoForm.Input.GetAll in,
-      @PageableDefault(size = 10, sort = "createdAt", direction = Direction.DESC) Pageable pageable) {
+      @PageableDefault(size = 10, sort = "createdAt", direction = Direction.ASC) Pageable pageable) {
     return service.getPage(TodoFormPredicate.search(in), pageable);
   }
 

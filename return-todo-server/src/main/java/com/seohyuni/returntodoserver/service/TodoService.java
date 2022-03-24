@@ -31,7 +31,7 @@ public class TodoService {
   @Transactional(readOnly = true)
   public List<TodoForm.Output.GetAll> getList(Predicate search) {
     return formMapper.toGetAllList(
-        (List<Todo>) repository.findAll(search, Sort.by(Direction.DESC, "createdAt")));
+        (List<Todo>) repository.findAll(search, Sort.by(Direction.ASC, "createdAt")));
   }
 
   @Transactional(readOnly = true)
@@ -47,14 +47,22 @@ public class TodoService {
   @Transactional
   public TodoForm.Output.Get add(TodoForm.Input.Add in) {
     Todo todo = formMapper.toTodo(in);
-    todo.setTag(tagRepository.getById(in.getTagId()));
+    if (in.getTagId() != null) {
+      todo.setTag(tagRepository.getById(in.getTagId()));
+    } else {
+      todo.setTag(null);
+    }
     return formMapper.toGet(repository.save(todo));
   }
 
   @Transactional
   public TodoForm.Output.Get update(Long id, TodoForm.Input.Update in) {
     Todo todo = mapper.update(in, repository.getById(id));
-    todo.setTag(tagRepository.getById(in.getTagId()));
+    if (in.getTagId() != null) {
+      todo.setTag(tagRepository.getById(in.getTagId()));
+    } else {
+      todo.setTag(null);
+    }
     return formMapper.toGet(todo);
   }
 

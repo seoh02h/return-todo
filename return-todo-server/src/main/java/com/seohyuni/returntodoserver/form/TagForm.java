@@ -51,13 +51,13 @@ public class TagForm {
     @AllArgsConstructor
     public static class GetAll {
 
-      @ApiModelProperty(value = "태그 식별번호", required = true)
+      @ApiModelProperty(value = "태그 식별번호")
       private String id;
 
-      @ApiModelProperty(value = "태그 이름", required = true)
+      @ApiModelProperty(value = "태그 이름")
       private String name;
 
-      @ApiModelProperty(value = "태그 색상코드", required = true)
+      @ApiModelProperty(value = "태그 색상코드")
       private String colorCode;
 
     }
@@ -69,13 +69,13 @@ public class TagForm {
     @AllArgsConstructor
     public static class Get {
 
-      @ApiModelProperty(value = "태그 식별번호", required = true)
+      @ApiModelProperty(value = "태그 식별번호")
       private String id;
 
-      @ApiModelProperty(value = "태그 이름", required = true)
+      @ApiModelProperty(value = "태그 이름")
       private String name;
 
-      @ApiModelProperty(value = "태그 색상코드", required = true)
+      @ApiModelProperty(value = "태그 색상코드")
       private String colorCode;
 
     }

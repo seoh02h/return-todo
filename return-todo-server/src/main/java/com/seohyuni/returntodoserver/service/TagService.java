@@ -4,7 +4,9 @@ import com.seohyuni.returntodoserver.form.TagForm;
 import com.seohyuni.returntodoserver.formmapper.TagFormMapper;
 import com.seohyuni.returntodoserver.mapper.TagMapper;
 import com.seohyuni.returntodoserver.model.Tag;
+import com.seohyuni.returntodoserver.model.Todo;
 import com.seohyuni.returntodoserver.repository.TagRepository;
+import com.seohyuni.returntodoserver.repository.TodoRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class TagService {
   private final TagMapper mapper;
 
   private final TagFormMapper formMapper;
+
+  private final TodoRepository todoRepository;
 
   @Transactional(readOnly = true)
   public List<TagForm.Output.GetAll> getList() {
@@ -42,6 +46,10 @@ public class TagService {
 
   @Transactional
   public void delete(Long id) {
+    List<Todo> todoList = todoRepository.findByTag_Id(id);
+    for (Todo todo : todoList) {
+      todo.setTag(null);
+    }
     repository.deleteById(id);
   }
 
