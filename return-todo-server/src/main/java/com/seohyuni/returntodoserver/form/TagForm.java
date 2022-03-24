@@ -37,9 +37,11 @@ public class TagForm {
     public static class Update {
 
       @ApiModelProperty(value = "태그 이름", required = true)
+      @NotBlank(message = "'name' must not be null")
       private String name;
 
       @ApiModelProperty(value = "태그 색상코드", required = true)
+      @NotBlank(message = "'name' must not be null")
       private String colorCode;
 
     }

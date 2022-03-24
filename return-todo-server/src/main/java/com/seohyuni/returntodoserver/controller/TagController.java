@@ -49,7 +49,8 @@ public class TagController {
   @SneakyThrows
   @ApiOperation("태그 수정")
   @PutMapping("/tag/{id}")
-  public TagForm.Output.Get update(@PathVariable Long id, @RequestBody TagForm.Input.Update in) {
+  public TagForm.Output.Get update(@PathVariable Long id,
+      @RequestBody @Valid TagForm.Input.Update in) {
     return service.update(id, in);
   }
 
