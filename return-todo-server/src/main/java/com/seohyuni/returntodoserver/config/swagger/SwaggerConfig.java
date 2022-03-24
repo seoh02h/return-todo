@@ -1,4 +1,4 @@
-package com.seohyuni.returntodoserver.config;
+package com.seohyuni.returntodoserver.config.swagger;
 
 import com.fasterxml.classmate.TypeResolver;
 import io.swagger.annotations.ApiModel;
@@ -16,7 +16,10 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.DocExpansion;
 import springfox.documentation.swagger.web.ModelRendering;
+import springfox.documentation.swagger.web.OperationsSorter;
+import springfox.documentation.swagger.web.TagsSorter;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -63,8 +66,25 @@ public class SwaggerConfig {
   @Bean
   public UiConfiguration uiConfiguration() {
     return UiConfigurationBuilder.builder()
+        .deepLinking(false)
+        .displayOperationId(false)
+        .defaultModelsExpandDepth(0)
+        .defaultModelExpandDepth(5)
         .defaultModelRendering(ModelRendering.MODEL)
+        .displayRequestDuration(false)
+        .docExpansion(DocExpansion.LIST)
+        .filter(false)
+        .maxDisplayedTags(null)
+        .operationsSorter(OperationsSorter.ALPHA)
+        .showExtensions(false)
+        .tagsSorter(TagsSorter.ALPHA)
+        .validatorUrl(null)
         .build();
+  }
+
+  @Bean
+  public SwaggerDefaultTypeNameProvider swaggerDefaultTypeNameProvider() {
+    return new SwaggerDefaultTypeNameProvider();
   }
 
   @Data

@@ -22,7 +22,7 @@ public class TagService {
 
   @Transactional(readOnly = true)
   public List<TagForm.Output.GetAll> getList() {
-    return formMapper.toGetAllList((List<Tag>) repository.findAll(search));
+    return formMapper.toGetAllList((List<Tag>) repository.findAll());
   }
 
   @Transactional(readOnly = true)

@@ -18,10 +18,10 @@ public class TagForm {
     @AllArgsConstructor
     public static class Add {
 
-      @ApiModelProperty(value = "이름", required = true)
+      @ApiModelProperty(value = "태그 이름", required = true)
       private String name;
 
-      @ApiModelProperty(value = "색상코드", required = true)
+      @ApiModelProperty(value = "태그 색상코드", required = true)
       private String colorCode;
 
     }
