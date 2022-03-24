@@ -1,6 +1,7 @@
 package com.seohyuni.returntodoserver.advice;
 
 import com.seohyuni.returntodoserver.form.ErrorForm;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,6 +30,15 @@ public class ExceptionAdvice {
     return ErrorForm.Output.Message.builder()
         .code("400")
         .message(message)
+        .build();
+  }
+
+  @ExceptionHandler(value = EntityNotFoundException.class)
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  public ErrorForm.Output.Message entityNotFoundException(EntityNotFoundException e) {
+    return ErrorForm.Output.Message.builder()
+        .code("404")
+        .message(e.getMessage())
         .build();
   }
 

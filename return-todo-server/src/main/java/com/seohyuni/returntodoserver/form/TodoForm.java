@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class TodoForm {
 
@@ -35,6 +36,7 @@ public class TodoForm {
     public static class Add {
 
       @ApiModelProperty(value = "Todo 내용", required = true)
+      @NotBlank(message = "'content' must not be null")
       private String content;
 
       @ApiModelProperty(value = "태그 식별번호")
@@ -50,6 +52,7 @@ public class TodoForm {
     public static class Update {
 
       @ApiModelProperty(value = "Todo 내용", required = true)
+      @NotBlank(message = "'content' must not be null")
       private String content;
 
       @ApiModelProperty(value = "태그 식별번호")

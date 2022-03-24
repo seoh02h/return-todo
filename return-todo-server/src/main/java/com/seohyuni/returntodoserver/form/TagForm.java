@@ -41,7 +41,7 @@ public class TagForm {
       private String name;
 
       @ApiModelProperty(value = "태그 색상코드", required = true)
-      @NotBlank(message = "'name' must not be null")
+      @NotBlank(message = "'colorCode' must not be null")
       private String colorCode;
 
     }

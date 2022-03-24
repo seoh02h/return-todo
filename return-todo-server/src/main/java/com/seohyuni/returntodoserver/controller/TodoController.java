@@ -6,6 +6,7 @@ import com.seohyuni.returntodoserver.service.TodoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
@@ -54,14 +55,15 @@ public class TodoController {
   @SneakyThrows
   @ApiOperation("Todo 생성")
   @PostMapping("/todo")
-  public TodoForm.Output.Get add(@RequestBody TodoForm.Input.Add in) {
+  public TodoForm.Output.Get add(@RequestBody @Valid TodoForm.Input.Add in) {
     return service.add(in);
   }
 
   @SneakyThrows
   @ApiOperation("Todo 수정")
   @PutMapping("/todo/{id}")
-  public TodoForm.Output.Get update(@PathVariable Long id, @RequestBody TodoForm.Input.Update in) {
+  public TodoForm.Output.Get update(@PathVariable Long id,
+      @RequestBody @Valid TodoForm.Input.Update in) {
     return service.update(id, in);
   }
 
