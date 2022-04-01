@@ -41,7 +41,7 @@ public class TagController {
 
   @SneakyThrows
   @ApiOperation("태그 생성")
-  @PostMapping("/tag/{id}")
+  @PostMapping("/tag")
   public TagForm.Output.Get add(@RequestBody @Valid TagForm.Input.Add in) {
     return service.add(in);
   }
