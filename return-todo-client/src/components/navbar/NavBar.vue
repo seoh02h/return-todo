@@ -1,0 +1,77 @@
+<template>
+  <div class="nav-bar">
+    <router-link
+      tag="div"
+      class="nav-todo"
+      :to="{ name: 'todo' }"
+      v-bind:class="{ 'in-tag': !inTodo }"
+      >Todo</router-link
+    >
+    <router-link
+      tag="div"
+      class="nav-tag"
+      :to="{ name: 'tag' }"
+      v-bind:class="{ 'in-todo': inTodo }"
+    >
+      Tag
+    </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      inTodo: true,
+    };
+  },
+  methods: {},
+  watch: {
+    $route(to) {
+      this.inTodo = to.name == "tag" ? false : true;
+    },
+  },
+  created() {
+    this.inTodo = this.$route.name == "tag" ? false : true;
+  },
+};
+</script>
+
+<style scoped>
+.nav-bar {
+  display: flex;
+}
+
+.nav-bar > div {
+  text-decoration: none;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.nav-todo {
+  width: 250px;
+  border-radius: 10px 0 0 0;
+}
+
+.nav-tag {
+  width: 150px;
+  border-radius: 0 10px 0 0;
+}
+.in-todo {
+  background-color: rgba(216, 216, 216, 0.568);
+  border-bottom: 2px solid rgba(163, 163, 163, 0.219);
+  border-left: 2px solid rgba(163, 163, 163, 0.219);
+  box-shadow: inset 5px -5px 20px rgba(70, 70, 70, 0.1);
+}
+
+.in-tag {
+  background-color: rgba(216, 216, 216, 0.568);
+  border-bottom: 2px solid rgba(163, 163, 163, 0.219);
+  border-right: 2px solid rgba(163, 163, 163, 0.219);
+  box-shadow: inset -5px -5px 20px rgba(70, 70, 70, 0.1);
+}
+div {
+  cursor: pointer;
+}
+</style>

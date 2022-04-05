@@ -1,9 +1,13 @@
 <template>
-  <div>todo</div>
+  <div class="todo-list"></div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style></style>
+<style>
+div {
+  color: rgb(167, 91, 91);
+}
+</style>
