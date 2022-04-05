@@ -14,6 +14,9 @@ const actions = {
       context.commit("setTagList", tagList);
     });
   },
+  getTag(context, { id }) {
+    return tag.get(id).then((tag) => tag);
+  },
   saveTag(context, { colorCode, name }) {
     return tag.create(colorCode, name).then(() => context.dispatch("getTagList"));
   },

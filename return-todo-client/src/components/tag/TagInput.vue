@@ -59,22 +59,24 @@ export default {
 .input-color {
   cursor: pointer;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
-  margin-right: 3px;
+  margin-right: 2px;
 }
 input::-webkit-color-swatch {
-  border: 3px solid rgba(123, 123, 123, 0.357);
+  border: 2px solid rgba(74, 74, 74, 0.148);
   border-radius: 50%;
 }
 
 .input-text {
   height: 30px;
-  padding-top: 4px;
+  line-height: 30px;
+  padding-top: 2px;
   border: none;
   background: transparent;
   width: 180px;
+  font-size: 18px;
 }
 .input-text::placeholder {
   color: rgba(18, 18, 18, 0.282);
@@ -91,6 +93,6 @@ i {
   cursor: pointer;
 }
 i:hover {
-  color: rgba(15, 25, 160, 0.389);
+  color: rgb(176 187 222);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="tag-list">
-    <TagItem v-bind:tag="tag" v-for="(tag, idx) in tagList" v-bind:key="idx" />
+    <TagItem :tag="tag" v-for="(tag, idx) in tagList" :key="idx" />
   </div>
 </template>
 

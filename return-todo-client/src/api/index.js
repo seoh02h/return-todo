@@ -1,9 +1,67 @@
 import axios from "axios";
 
+export const todo = {
+  getList() {
+    return axios
+      .get("/todo")
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  },
+  get(id) {
+    return axios
+      .get("/todo/" + id)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  },
+  create(content, tagId) {
+    return axios
+      .post("/todo", {
+        content,
+        tagId,
+      })
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  put(id, content, tagId) {
+    return axios
+      .put("/todo/" + id, {
+        content,
+        tagId,
+      })
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  toggleComplete(id) {
+    return axios
+      .put("/todo/" + id, {})
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  delete(id) {
+    return axios
+      .delete("/todo/" + id)
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+};
 export const tag = {
   getList() {
     return axios
       .get("/tag")
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  },
+  get(id) {
+    return axios
+      .get("/tag/" + id)
       .then((res) => res.data)
       .catch((err) => console.log(err));
   },

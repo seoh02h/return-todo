@@ -57,7 +57,7 @@ export default {
 }
 
 .modal-container {
-  width: 270px;
+  width: 300px;
   margin: 0px auto;
   background-color: #fff;
   border-radius: 2px;
@@ -68,8 +68,8 @@ export default {
 }
 
 .modal-header {
-  padding-top: 10px;
-  height: 20px;
+  padding-top: 5px;
+  height: 17px;
 }
 .modal-header > * {
   float: right;
@@ -82,7 +82,7 @@ export default {
   justify-content: center;
   align-items: center;
   border-bottom: 1.5px solid rgba(179, 176, 178, 0.367);
-  padding: 15px;
+  padding: 10px;
 }
 
 .modal-footer {
@@ -93,16 +93,14 @@ export default {
   float: right;
 }
 
-.modal-enter-from {
+.modal-enter {
   opacity: 0;
 }
-
-.modal-leave-to {
+.modal-leave-active {
   opacity: 0;
 }
-
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
