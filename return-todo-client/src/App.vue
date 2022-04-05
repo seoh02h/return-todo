@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <NavBar />
-
-    <router-view />
+    <div class="main">
+      <NavBar />
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -17,18 +18,20 @@ export default {
 </script>
 
 <style>
-html {
+html body {
   margin: 0px;
   padding: 0px;
   width: 100%;
   height: 100%;
 }
-body {
+#app {
   height: 100vh;
-  background-color: rgba(233, 186, 85, 0.747);
+  background-image: url("./assets/images/background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#app {
+.main {
   width: 400px;
   height: 80%;
   position: absolute;
@@ -37,7 +40,7 @@ body {
   transform: translate(-50%, -50%);
   background-color: rgb(250, 246, 242);
   border-radius: 10px;
-  box-shadow: 0px 0px 25px 5px rgba(12, 12, 12, 0.066);
+  box-shadow: 0px 0px 25px 5px rgba(12, 12, 12, 0.128);
   font-family: "Noto Sans", sans-serif;
   color: rgb(45, 45, 45);
 }

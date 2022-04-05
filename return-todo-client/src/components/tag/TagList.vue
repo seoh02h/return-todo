@@ -5,18 +5,27 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import TagItem from "./TagItem.vue";
 export default {
   components: {
     TagItem,
   },
-  props: ["tagList"],
+  computed: {
+    ...mapState("tag", ["tagList"]),
+  },
+  methods: {
+    ...mapActions("tag", ["getTagList"]),
+  },
+  created() {
+    this.getTagList();
+  },
 };
 </script>
 
 <style scoped>
 .tag-item {
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 </style>

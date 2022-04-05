@@ -44,8 +44,8 @@ export default {
 
 .nav-bar > div {
   text-decoration: none;
-  height: 60px;
-  line-height: 60px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
 }
 
@@ -62,14 +62,14 @@ export default {
   background-color: rgba(216, 216, 216, 0.568);
   border-bottom: 2px solid rgba(163, 163, 163, 0.219);
   border-left: 2px solid rgba(163, 163, 163, 0.219);
-  box-shadow: inset 5px -5px 20px rgba(70, 70, 70, 0.1);
+  box-shadow: inset 5px -5px 10px rgba(71, 71, 71, 0.1);
 }
 
 .in-tag {
   background-color: rgba(216, 216, 216, 0.568);
   border-bottom: 2px solid rgba(163, 163, 163, 0.219);
   border-right: 2px solid rgba(163, 163, 163, 0.219);
-  box-shadow: inset -5px -5px 20px rgba(70, 70, 70, 0.1);
+  box-shadow: inset -5px -5px 10px rgba(71, 71, 71, 0.1);
 }
 div {
   cursor: pointer;

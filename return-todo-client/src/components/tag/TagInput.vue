@@ -1,6 +1,6 @@
 <template>
   <div class="tag-input">
-    <div class="input-form">
+    <div class="input-form" @click="closeElse">
       <input class="input-color" type="color" v-model="colorCode" />
       <input
         class="input-text"
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import EventBus from "@/eventBus.js";
 export default {
   data() {
     return {
@@ -23,13 +25,17 @@ export default {
     };
   },
   methods: {
+    ...mapActions("tag", ["getTagList", "saveTag"]),
     addTag() {
-      this.$emit("addTag", this.colorCode, this.name);
+      this.saveTag({ colorCode: this.colorCode, name: this.name });
       this.clearInput();
     },
     clearInput() {
       this.colorCode = "#ffffff";
       this.name = "";
+    },
+    closeElse() {
+      EventBus.$emit("tagEditClose");
     },
   },
 };
@@ -37,13 +43,13 @@ export default {
 
 <style scoped>
 .tag-input {
-  height: 100px;
+  height: 120px;
   display: flex;
 }
 .input-form {
   margin: auto;
-  height: 40px;
-  width: 300px;
+  height: 50px;
+  width: 320px;
   border-radius: 50px;
   display: flex;
   background-color: rgba(197, 195, 195, 0.195);
@@ -52,27 +58,29 @@ export default {
 }
 .input-color {
   cursor: pointer;
-  background-color: rgb(222, 222, 222);
   border: none;
-  width: 32px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 1px solid rgb(210, 210, 210);
-  margin-right: 10px;
-  color: #2f2f2f;
+  margin-right: 3px;
 }
 input::-webkit-color-swatch {
-  border: 2px solid rgba(123, 123, 123, 0.357);
+  border: 3px solid rgba(123, 123, 123, 0.357);
   border-radius: 50%;
 }
+
 .input-text {
+  height: 30px;
+  padding-top: 4px;
   border: none;
   background: transparent;
+  width: 180px;
 }
 .input-text::placeholder {
   color: rgba(18, 18, 18, 0.282);
-  font-size: 15px;
+  font-size: 18px;
 }
+
 .input-text:focus {
   outline: none;
   background: transparent;
@@ -80,5 +88,9 @@ input::-webkit-color-swatch {
 i {
   font-size: 20px;
   color: rgb(91, 89, 85);
+  cursor: pointer;
+}
+i:hover {
+  color: rgba(15, 25, 160, 0.389);
 }
 </style>
