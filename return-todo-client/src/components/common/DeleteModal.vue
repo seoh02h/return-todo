@@ -4,19 +4,15 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header">
-              <i @click="close" class="fa fa-times"></i>
-            </slot>
+            <i @click="close" class="fa fa-times"></i>
           </div>
           <div class="modal-body">
+            <div><i class="fa fa-trash-alt body-icon"></i></div>
             <slot name="body">default body</slot>
           </div>
-
           <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">OK</button>
-            </slot>
+            <button @click="close">닫기</button>
+            <button @click="remove">삭제</button>
           </div>
         </div>
       </div>
@@ -32,6 +28,9 @@ export default {
   methods: {
     close() {
       this.$emit("close");
+    },
+    remove() {
+      this.$emit("remove");
     },
   },
 };
@@ -78,10 +77,37 @@ export default {
 
 .modal-body {
   border-bottom: 1.5px solid rgba(179, 176, 178, 0.367);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
+.body-icon {
+  font-size: 40px;
+  color: rgb(193, 43, 43);
+  margin-bottom: 10px;
+}
 .modal-footer {
   height: 50px;
+}
+
+.modal-footer button {
+  float: right;
+  margin: 10px 0px;
+  width: 50px;
+  height: 30px;
+  margin-left: 8px;
+  background-color: rgb(239, 239, 239);
+  border: none;
+  color: rgb(64, 64, 64);
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal-footer button:hover {
+  background-color: rgba(191, 191, 191, 0.382);
 }
 
 .modal-default-button {

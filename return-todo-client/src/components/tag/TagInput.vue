@@ -1,5 +1,8 @@
 <template>
   <div class="tag-input">
+    <div class="error">
+      {{ error }}
+    </div>
     <div class="input-form" @click="closeElse">
       <input class="input-color" type="color" v-model="colorCode" />
       <input
@@ -22,13 +25,19 @@ export default {
     return {
       colorCode: "#ffffff",
       name: "",
+      error: "",
     };
   },
   methods: {
     ...mapActions("tag", ["getTagList", "saveTag"]),
     addTag() {
-      this.saveTag({ colorCode: this.colorCode, name: this.name });
-      this.clearInput();
+      if (this.name.length === 0) {
+        this.error = "태그를 1 글자 이상 입력하세요";
+      } else {
+        this.error = "";
+        this.saveTag({ colorCode: this.colorCode, name: this.name });
+        this.clearInput();
+      }
     },
     clearInput() {
       this.colorCode = "#ffffff";
@@ -38,13 +47,15 @@ export default {
       EventBus.$emit("tagEditClose");
     },
   },
+  created() {
+    this.error = "";
+  },
 };
 </script>
 
 <style scoped>
 .tag-input {
   height: 120px;
-  display: flex;
 }
 .input-form {
   margin: auto;
@@ -93,6 +104,13 @@ i {
   cursor: pointer;
 }
 i:hover {
-  color: rgb(176 187 222);
+  color: #bd7c89;
+}
+.error {
+  margin-top: 20px;
+  height: 20px;
+  color: rgb(180, 24, 24);
+  font-size: 14px;
+  margin-left: 170px;
 }
 </style>

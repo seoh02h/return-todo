@@ -14,6 +14,7 @@ export default {
   components: {
     NavBar,
   },
+  created() {},
 };
 </script>
 
@@ -32,8 +33,8 @@ html body {
 }
 
 .main {
-  width: 400px;
-  height: 80%;
+  width: 600px;
+  height: 550px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -42,6 +43,6 @@ html body {
   border-radius: 10px;
   box-shadow: 0px 0px 25px 5px rgba(12, 12, 12, 0.128);
   font-family: "Noto Sans", sans-serif;
-  color: rgb(45, 45, 45);
+  color: #37352f;
 }
 </style>

@@ -18,27 +18,21 @@
     ></i>
     <i @click="openModal" class="fa fa-trash-alt fa-sm"></i>
 
-    <Modal :show="showModal" @close="showModal = false" @remove="remove(tag.id)">
+    <DeleteModal :show="showModal" @close="showModal = false" @remove="remove(tag.id)">
       <template #body>
-        <div><i class="fa fa-trash-alt modal-icon"></i></div>
         <div>'{{ tag.name }}' 태그를 삭제하시겠습니까?</div>
       </template>
-
-      <template #footer>
-        <button class="modal-btn" @click="showModal = false">취소</button>
-        <button class="modal-btn" @click="remove(tag.id)">삭제</button>
-      </template>
-    </Modal>
+    </DeleteModal>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import Modal from "@/components/common/Modal.vue";
+import DeleteModal from "@/components/common/DeleteModal.vue";
 import EventBus from "@/eventBus.js";
 export default {
   components: {
-    Modal,
+    DeleteModal,
   },
   props: ["tag"],
   data() {
@@ -49,6 +43,7 @@ export default {
   },
   methods: {
     ...mapActions("tag", ["getTagList", "updateTag", "deleteTag"]),
+    ...mapActions("todo", ["getTodoList"]),
 
     editableTag() {
       EventBus.$emit("tagEditClose");
@@ -61,6 +56,7 @@ export default {
     },
     remove(id) {
       this.deleteTag({ id });
+
       this.showModal = false;
     },
     closeEdit() {
@@ -85,18 +81,19 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 360px;
+  width: 430px;
   border-radius: 20px;
   font-size: 17px;
-  height: 30px;
+  height: 34px;
 }
 .input-color {
   cursor: pointer;
   border: none;
   width: 25px;
-  height: 25px;
+  height: 27px;
   background-color: transparent;
   margin-right: 3px;
+  margin-bottom: 2px;
 }
 input::-webkit-color-swatch {
   border-radius: 50%;
@@ -107,6 +104,7 @@ input::-webkit-color-swatch {
   border: none;
   background: transparent;
   font-size: 20px;
+  width: 300px;
 }
 
 .input-text:focus {
@@ -126,33 +124,10 @@ input::-webkit-color-swatch {
 }
 i {
   margin: auto 4px;
-  color: rgba(119, 119, 119, 0.635);
+  color: rgba(0, 0, 0, 0.635);
   cursor: pointer;
 }
 i:hover {
-  color: rgb(213, 148, 159);
-}
-
-.modal-icon {
-  font-size: 40px;
-  color: rgba(255, 0, 0, 0.635);
-  margin-bottom: 10px;
-}
-
-.modal-btn {
-  float: right;
-  margin: 10px 0px;
-  width: 50px;
-  height: 30px;
-  margin-left: 8px;
-  background-color: rgb(239, 239, 239);
-  border: none;
-  color: rgb(64, 64, 64);
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.modal-btn:hover {
-  background-color: rgba(191, 191, 191, 0.382);
+  color: #bd7c89;
 }
 </style>

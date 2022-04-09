@@ -23,4 +23,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.todo-list {
+  overflow: scroll;
+  height: 370px;
+  margin-bottom: 10px;
+}
+</style>

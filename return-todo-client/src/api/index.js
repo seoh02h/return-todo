@@ -24,7 +24,7 @@ export const todo = {
         console.log(err);
       });
   },
-  put(id, content, tagId) {
+  update(id, content, tagId) {
     return axios
       .put("/todo/" + id, {
         content,
@@ -37,7 +37,7 @@ export const todo = {
   },
   toggleComplete(id) {
     return axios
-      .put("/todo/" + id, {})
+      .put("/todo/" + id + "/complete", {})
       .then((res) => res.data)
       .catch((err) => {
         console.log(err);

@@ -5,15 +5,16 @@
       class="nav-todo"
       :to="{ name: 'todo' }"
       v-bind:class="{ 'in-tag': !inTodo }"
-      >Todo</router-link
     >
+      <img src="@/assets/images/todo.png" width="25px" />
+    </router-link>
     <router-link
       tag="div"
       class="nav-tag"
       :to="{ name: 'tag' }"
       v-bind:class="{ 'in-todo': inTodo }"
     >
-      Tag
+      <img src="@/assets/images/tag.png" width="25px" />
     </router-link>
   </div>
 </template>
@@ -50,28 +51,31 @@ export default {
 }
 
 .nav-todo {
-  width: 250px;
+  width: 400px;
   border-radius: 10px 0 0 0;
 }
 
 .nav-tag {
-  width: 150px;
+  width: 200px;
   border-radius: 0 10px 0 0;
 }
 .in-todo {
   background-color: rgba(216, 216, 216, 0.568);
   border-bottom: 2px solid rgba(163, 163, 163, 0.219);
   border-left: 2px solid rgba(163, 163, 163, 0.219);
-  box-shadow: inset 5px -5px 10px rgba(71, 71, 71, 0.1);
+  box-shadow: inset 5px -5px 13px 5px rgba(72, 72, 72, 0.1);
 }
 
 .in-tag {
   background-color: rgba(216, 216, 216, 0.568);
   border-bottom: 2px solid rgba(163, 163, 163, 0.219);
   border-right: 2px solid rgba(163, 163, 163, 0.219);
-  box-shadow: inset -5px -5px 10px rgba(71, 71, 71, 0.1);
+  box-shadow: inset -5px -5px 13px 5px rgba(72, 72, 72, 0.1);
 }
 div {
   cursor: pointer;
+}
+img {
+  vertical-align: middle;
 }
 </style>
