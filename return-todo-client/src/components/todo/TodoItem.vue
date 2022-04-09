@@ -27,7 +27,7 @@
     </div>
     <DeleteModal :show="showDeleteModal" @close="showDeleteModal = false" @remove="remove(todo.id)">
       <template #body>
-        <div>'{{ todo.content }}' 할 일을 삭제하시겠습니까?</div>
+        <div class="delete-message">'{{ todo.content }}'<br />할 일을 삭제하시겠습니까?</div>
       </template>
     </DeleteModal>
     <TodoEditModal :show="showEditModal" :todo="todo" :tag="tag" @close="showEditModal = false">
@@ -104,6 +104,7 @@ export default {
 <style scoped>
 .todo-item {
   margin: 17px 30px;
+  margin-top: 0px;
   justify-content: center;
   display: flex;
   font-size: 18px;
@@ -193,5 +194,9 @@ i:hover {
   border-radius: 50%;
   border: 1px solid rgba(228, 228, 228, 0.54);
   margin-right: 3px;
+}
+
+.delete-message {
+  text-align: center;
 }
 </style>

@@ -1,9 +1,14 @@
 import axios from "axios";
 
 export const todo = {
-  getList() {
+  getList(complete, tagId) {
     return axios
-      .get("/todo")
+      .get("/todo", {
+        params: {
+          complete,
+          tagId,
+        },
+      })
       .then((res) => res.data)
       .catch((err) => console.log(err));
   },

@@ -20,6 +20,7 @@
             ref="input"
             :value="content"
             @input="changeInput"
+            @keypress.enter="addTodo"
             type="text"
             class="input-text"
             placeholder="할 일을 입력하세요"

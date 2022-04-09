@@ -2,6 +2,8 @@ import { todo } from "@/api";
 
 const state = {
   todoList: [],
+  complete: null,
+  tagId: null,
 };
 
 const getters = {};
@@ -10,11 +12,20 @@ const mutations = {
   setTodoList(state, payload) {
     state.todoList = payload;
   },
+  setCompleteTrue(state) {
+    state.complete = true;
+  },
+  setCompleteNull(state) {
+    state.complete = null;
+  },
+  setCompleteFalse(state) {
+    state.complete = false;
+  },
 };
 
 const actions = {
   getTodoList(context) {
-    return todo.getList().then((todoList) => {
+    return todo.getList(context.state.complete, context.state.tagId).then((todoList) => {
       context.commit("setTodoList", todoList);
     });
   },

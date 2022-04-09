@@ -25,6 +25,7 @@
               @input="changeInput"
               type="text"
               class="input-text"
+              @keypress.enter="update"
               placeholder="할 일을 입력하세요"
             />
           </div>

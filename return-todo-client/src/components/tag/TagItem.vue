@@ -7,7 +7,7 @@
         class="input-text"
         ref="input"
         type="text"
-        @keyup.enter="update"
+        @keypress.enter="update"
         :value="name"
         @input="changeInput"
         :readonly="!editable"
@@ -19,7 +19,7 @@
     </div>
     <DeleteModal :show="showModal" @close="showModal = false" @remove="remove">
       <template #body>
-        <div>'{{ tag.name }}' 태그를 삭제하시겠습니까?</div>
+        <div class="delete-message">'{{ tag.name }}'<br />태그를 삭제하시겠습니까?</div>
       </template>
     </DeleteModal>
   </div>
@@ -167,5 +167,9 @@ i:hover {
   font-size: 12px;
   width: 300px;
   height: 15px;
+}
+
+.delete-message {
+  text-align: center;
 }
 </style>
