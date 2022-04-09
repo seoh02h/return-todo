@@ -21,6 +21,9 @@ const mutations = {
   setCompleteFalse(state) {
     state.complete = false;
   },
+  setTagId(state, tagId) {
+    state.tagId = tagId;
+  },
 };
 
 const actions = {

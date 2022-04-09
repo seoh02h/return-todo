@@ -63,14 +63,14 @@ export default {
   background-color: rgba(216, 216, 216, 0.568);
   border-bottom: 2px solid rgba(163, 163, 163, 0.219);
   border-left: 2px solid rgba(163, 163, 163, 0.219);
-  box-shadow: inset 5px -5px 13px 5px rgba(72, 72, 72, 0.1);
+  box-shadow: inset 5px -5px 15px 10px rgba(93, 93, 93, 0.205);
 }
 
 .in-tag {
   background-color: rgba(216, 216, 216, 0.568);
   border-bottom: 2px solid rgba(163, 163, 163, 0.219);
   border-right: 2px solid rgba(163, 163, 163, 0.219);
-  box-shadow: inset -5px -5px 13px 5px rgba(72, 72, 72, 0.1);
+  box-shadow: inset -5px -5px 15px 10px rgba(93, 93, 93, 0.205);
 }
 div {
   cursor: pointer;

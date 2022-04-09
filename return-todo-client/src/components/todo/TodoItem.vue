@@ -12,9 +12,6 @@
         <div>{{ todo.content }}</div>
         <div class="tag" v-if="loadTag">
           <div class="tag-color-circle" :style="tagColor"></div>
-          <div v-if="tag">
-            {{ this.tag.name }}
-          </div>
         </div>
         <div class="createdAt">
           <div>{{ formatDate }}</div>
@@ -107,7 +104,7 @@ export default {
   margin-top: 0px;
   justify-content: center;
   display: flex;
-  font-size: 18px;
+  font-size: 17px;
 }
 .todo {
   height: 30px;
@@ -123,7 +120,7 @@ export default {
 }
 .check-box {
   margin-right: 10px;
-  width: 18px;
+  width: 16px;
   opacity: 0.8;
 }
 
@@ -140,7 +137,7 @@ img {
 }
 .todo-complete .check-box {
   opacity: 0.6;
-  width: 20px;
+  width: 18px;
   margin-right: 8px;
 }
 
@@ -152,29 +149,8 @@ img {
 .tag {
   display: flex;
   align-items: center;
-  font-size: 13px;
-  margin-left: 8px;
-  background-color: rgba(223, 223, 223, 0.343);
-  border-radius: 10px;
+  margin-left: 1px;
   margin: 5px;
-  padding: 6px;
-  padding-right: 8px;
-}
-
-.tag-color {
-  padding-bottom: 1.5px;
-}
-
-.input-color {
-  border: none;
-  width: 18px;
-  height: 20px;
-  background-color: transparent;
-}
-
-input::-webkit-color-swatch {
-  border-radius: 50%;
-  border: 1.5px solid rgba(56, 56, 56, 0.067);
 }
 
 i {
@@ -188,8 +164,8 @@ i:hover {
   color: #bd7c89;
 }
 .tag-color-circle {
-  width: 9px;
-  height: 8px;
+  width: 10px;
+  height: 9.5px;
   background-color: transparent;
   border-radius: 50%;
   border: 1px solid rgba(228, 228, 228, 0.54);

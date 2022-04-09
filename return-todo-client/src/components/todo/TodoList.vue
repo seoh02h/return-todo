@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
 .todo-list {
-  margin-top: 20px;
+  margin-top: 25px;
   overflow: scroll;
   height: 330px;
   margin-bottom: 10px;

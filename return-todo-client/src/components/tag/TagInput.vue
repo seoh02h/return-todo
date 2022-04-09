@@ -24,7 +24,7 @@ import EventBus from "@/eventBus.js";
 export default {
   data() {
     return {
-      colorCode: "#ffffff",
+      colorCode: "#cda2ab",
       name: "",
       error: "",
     };
@@ -49,7 +49,7 @@ export default {
       this.name = e.target.value;
     },
     clearInput() {
-      this.colorCode = "#ffffff";
+      this.colorCode = "#cda2ab";
       this.name = "";
     },
     closeElse() {
@@ -95,7 +95,7 @@ export default {
   margin-right: 2px;
 }
 input::-webkit-color-swatch {
-  border: 2px solid rgba(74, 74, 74, 0.148);
+  border: 2px solid rgba(140, 140, 140, 0.148);
   border-radius: 50%;
 }
 
@@ -118,12 +118,12 @@ input::-webkit-color-swatch {
   background: transparent;
 }
 i {
-  font-size: 20px;
-  color: rgb(91, 89, 85);
+  font-size: 25px;
+  color: #bd7c89;
   cursor: pointer;
 }
 i:hover {
-  color: #bd7c89;
+  color: #bd7281;
 }
 .error {
   margin-top: 20px;
