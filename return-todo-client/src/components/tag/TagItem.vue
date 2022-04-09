@@ -1,23 +1,25 @@
 <template>
-  <div class="tag-item" v-bind:class="{ edit: editable }">
-    <input class="input-color" type="color" v-model="tag.colorCode" :disabled="!editable" />
-    <input
-      class="input-text"
-      ref="input"
-      type="text"
-      @keyup.enter="update(tag.id, tag.colorCode, tag.name)"
-      v-model="tag.name"
-      :readonly="!editable"
-    />
+  <div class="tag-item">
+    <div v-if="editable" class="error">{{ error }}</div>
+    <div class="tag" :class="{ edit: editable }">
+      <input class="input-color" type="color" v-model="tag.colorCode" :disabled="!editable" />
+      <input
+        class="input-text"
+        ref="input"
+        type="text"
+        @keyup.enter="update(tag.id, tag.colorCode, tag.name)"
+        v-model="tag.name"
+        :readonly="!editable"
+      />
 
-    <i v-if="!editable" v-on:click="editableTag" class="fa fa-pen fa-sm"></i>
-    <i
-      v-if="editable"
-      @click="update(tag.id, tag.colorCode, tag.name)"
-      class="fa fa-check fa-sm"
-    ></i>
-    <i @click="openModal" class="fa fa-trash-alt fa-sm"></i>
-
+      <i v-if="!editable" v-on:click="editableTag" class="fa fa-pen fa-sm"></i>
+      <i
+        v-if="editable"
+        @click="update(tag.id, tag.colorCode, tag.name)"
+        class="fa fa-check fa-sm"
+      ></i>
+      <i @click="openModal" class="fa fa-trash-alt fa-sm"></i>
+    </div>
     <DeleteModal :show="showModal" @close="showModal = false" @remove="remove(tag.id)">
       <template #body>
         <div>'{{ tag.name }}' 태그를 삭제하시겠습니까?</div>
@@ -39,6 +41,7 @@ export default {
     return {
       editable: false,
       showModal: false,
+      error: "",
     };
   },
   methods: {
@@ -51,8 +54,13 @@ export default {
       this.$refs.input.focus();
     },
     update(id, colorCode, name) {
-      this.updateTag({ id, colorCode, name });
-      this.editable = false;
+      if (name.length === 0) {
+        this.error = "태그를 1 글자 이상 입력하세요";
+      } else {
+        this.error = "";
+        this.updateTag({ id, colorCode, name });
+        this.editable = false;
+      }
     },
     remove(id) {
       this.deleteTag({ id });
@@ -61,6 +69,7 @@ export default {
     },
     closeEdit() {
       this.editable = false;
+      this.error = "";
       this.getTagList();
     },
     openModal() {
@@ -78,13 +87,20 @@ export default {
 
 <style scoped>
 .tag-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 430px;
-  border-radius: 20px;
+}
+.error {
+  margin-left: 30px;
+  color: rgb(180, 24, 24);
+}
+.tag {
   font-size: 17px;
+  display: flex;
+  width: 430px;
+  align-items: center;
+  justify-content: center;
   height: 34px;
+  border-radius: 20px;
 }
 .input-color {
   cursor: pointer;
@@ -129,5 +145,9 @@ i {
 }
 i:hover {
   color: #bd7c89;
+}
+.error {
+  font-size: 12px;
+  width: 300px;
 }
 </style>
