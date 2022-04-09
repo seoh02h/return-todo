@@ -2,7 +2,7 @@
   <div class="tag-item">
     <div class="error">{{ error }}</div>
     <div class="tag" :class="{ edit: editable }">
-      <input class="input-color" type="color" v-model="tag.colorCode" :disabled="!editable" />
+      <input class="input-color" type="color" v-model="colorCode" :disabled="!editable" />
       <input
         class="input-text"
         ref="input"
@@ -17,7 +17,7 @@
       <i v-if="editable" @click="update" class="fa fa-check fa-sm"></i>
       <i @click="openModal" class="fa fa-trash-alt fa-sm"></i>
     </div>
-    <DeleteModal :show="showModal" @close="showModal = false" @remove="remove(tag.id)">
+    <DeleteModal :show="showModal" @close="showModal = false" @remove="remove">
       <template #body>
         <div>'{{ tag.name }}' 태그를 삭제하시겠습니까?</div>
       </template>
@@ -64,14 +64,16 @@ export default {
         this.editable = false;
       }
     },
-    remove(id) {
-      this.deleteTag({ id });
+    remove() {
+      this.deleteTag({ id: this.tag.id });
       this.showModal = false;
       this.getTodoList();
     },
     closeEdit() {
       this.editable = false;
       this.error = "";
+      this.name = this.tag.name;
+      this.colorCode = this.tag.colorCode;
       this.getTagList();
     },
     openModal() {
@@ -86,6 +88,7 @@ export default {
     this.colorCode = this.tag.colorCode;
     this.name = this.tag.name;
   },
+
   watch: {
     name: function (value) {
       if (value.length > 6) {

@@ -12,7 +12,7 @@
         <div>{{ todo.content }}</div>
         <div class="tag" v-if="loadTag">
           <div class="tag-color-circle" :style="tagColor"></div>
-          <div>
+          <div v-if="tag">
             {{ this.tag.name }}
           </div>
         </div>
@@ -39,7 +39,7 @@
 import { mapState, mapActions } from "vuex";
 import DeleteModal from "@/components/common/DeleteModal.vue";
 import TodoEditModal from "@/components/todo/TodoEditModal.vue";
-import { tag } from "@/api";
+import { todo, tag } from "@/api";
 export default {
   props: ["todo"],
   components: {
@@ -56,16 +56,18 @@ export default {
   },
   methods: {
     ...mapActions("todo", ["toggleTodoComplete", "deleteTodo", "updateTodo"]),
-    getTagInfo(tagId) {
-      if (tagId) {
-        tag.get(tagId).then((tag) => {
-          this.tag = tag;
-          this.loadTag = true;
-        });
-      } else {
-        this.loadTag = false;
-        this.tag = null;
-      }
+    getTagInfo() {
+      todo.get(this.todo.id).then((todo) => {
+        if (todo.tagId) {
+          tag.get(todo.tagId).then((tag) => {
+            this.tag = tag;
+            this.loadTag = true;
+          });
+        } else {
+          this.loadTag = false;
+          this.tag = null;
+        }
+      });
     },
     toggle(id) {
       this.toggleTodoComplete({ id });
@@ -75,21 +77,25 @@ export default {
       this.showDeleteModal = false;
     },
   },
-  created() {
-    this.getTagInfo(this.todo.tagId);
-  },
   computed: {
     ...mapState("tag", ["tagList"]),
     formatDate() {
       return this.todo.createdAt.slice(5, 7) + "." + this.todo.createdAt.slice(8, 10);
     },
     tagColor() {
-      return { background: this.tag.colorCode };
+      if (this.tag) {
+        return { background: this.tag.colorCode };
+      } else {
+        return {};
+      }
     },
   },
+  created() {
+    this.getTagInfo();
+  },
   watch: {
-    todo: function (value) {
-      this.getTagInfo(value.tagId);
+    todo: function () {
+      this.getTagInfo();
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="todo-list">
-    <TodoItem :todo="todo" v-for="(todo, idx) in todoList" :key="idx" />
+    <TodoItem :todo="todo" v-for="(todo, idx) in todoList" :key="todoList[idx].id" />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   methods: {
     ...mapActions("todo", ["getTodoList"]),
   },
-  created() {
+  mounted() {
     this.getTodoList();
   },
 };
@@ -25,6 +25,7 @@ export default {
 
 <style scoped>
 .todo-list {
+  margin-top: 20px;
   overflow: scroll;
   height: 370px;
   margin-bottom: 10px;

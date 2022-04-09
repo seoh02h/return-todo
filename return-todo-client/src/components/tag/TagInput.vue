@@ -7,7 +7,7 @@
       <input class="input-color" type="color" v-model="colorCode" />
       <input
         class="input-text"
-        @keyup.enter="addTag"
+        @keypress.enter="addTag"
         type="text"
         @input="changeInput"
         :value="name"

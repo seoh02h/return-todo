@@ -8,6 +8,7 @@
           </div>
           <div class="modal-body">
             <img src="@/assets/images/todo.png" width="60px" />
+            <div class="error">{{ error }}</div>
             <div class="tag-input-form">
               <div class="tag-color" :style="tagColor"></div>
               <select class="select-tag" v-model="formTag">
@@ -20,7 +21,8 @@
 
             <input
               ref="input"
-              v-model="formContent"
+              :value="formContent"
+              @input="changeInput"
               type="text"
               class="input-text"
               placeholder="할 일을 입력하세요"
@@ -45,6 +47,7 @@ export default {
     return {
       formContent: "",
       formTag: null,
+      error: "",
     };
   },
   methods: {
@@ -54,12 +57,20 @@ export default {
       this.$emit("close");
     },
     update() {
-      if (this.formTag) {
-        this.updateTodo({ id: this.todo.id, content: this.formContent, tagId: this.formTag.id });
+      if (this.formContent.length === 0) {
+        this.error = "할 일을 1 글자 이상 입력하세요";
       } else {
-        this.updateTodo({ id: this.todo.id, content: this.formContent, tagId: null });
+        if (this.formTag) {
+          this.error = "";
+          this.updateTodo({ id: this.todo.id, content: this.formContent, tagId: this.formTag.id });
+        } else {
+          this.updateTodo({ id: this.todo.id, content: this.formContent, tagId: null });
+        }
+        this.$emit("close");
       }
-      this.$emit("close");
+    },
+    changeInput(e) {
+      this.formContent = e.target.value;
     },
   },
   computed: {
@@ -79,6 +90,14 @@ export default {
   watch: {
     tag: function (value) {
       this.formTag = value;
+    },
+    formContent: function (value) {
+      if (value.length > 10) {
+        this.error = "할 일은 10 글자를 초과할 수 없습니다.";
+        this.formContent = value.slice(0, 10);
+      } else if (value.length < 10) {
+        this.error = "";
+      }
     },
   },
 };
@@ -176,7 +195,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 15px;
 }
 .input-text {
   border: none;
@@ -221,5 +239,11 @@ select:focus {
   margin-right: 5px;
   margin-left: 4px;
   cursor: default;
+}
+.error {
+  padding-top: 10px;
+  height: 15px;
+  color: rgb(180, 24, 24);
+  font-size: 12px;
 }
 </style>

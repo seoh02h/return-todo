@@ -5,6 +5,8 @@
       <template #body>
         <div class="modal-body">
           <img src="@/assets/images/todo.png" width="60px" />
+          <div class="error">{{ error }}</div>
+
           <div class="tag-input-form">
             <div class="tag-color" :style="tagColor"></div>
             <select class="select-tag" v-model="tag">
@@ -16,7 +18,8 @@
           </div>
           <input
             ref="input"
-            v-model="content"
+            :value="content"
+            @input="changeInput"
             type="text"
             class="input-text"
             placeholder="할 일을 입력하세요"
@@ -56,6 +59,7 @@ export default {
       content: "",
       tag: null,
       showModal: false,
+      error: "",
     };
   },
   methods: {
@@ -65,17 +69,36 @@ export default {
       this.showModal = true;
     },
     addTodo() {
-      if (this.tag) {
-        this.saveTodo({ content: this.content, tagId: this.tag.id });
+      if (this.content.length === 0) {
+        this.error = "할 일을 1 글자 이상 입력하세요";
       } else {
-        this.saveTodo({ content: this.content, tagId: null });
+        this.error = "";
+        if (this.tag) {
+          this.saveTodo({ content: this.content, tagId: this.tag.id });
+        } else {
+          this.saveTodo({ content: this.content, tagId: null });
+        }
+        this.content = "";
+        this.tag = null;
+        this.showModal = false;
       }
-      this.showModal = false;
+    },
+    changeInput(e) {
+      this.content = e.target.value;
     },
   },
-
   created() {
     this.getTagList();
+  },
+  watch: {
+    content: function (value) {
+      if (value.length > 10) {
+        this.error = "할 일은 10 글자를 초과할 수 없습니다.";
+        this.content = value.slice(0, 10);
+      } else if (value.length < 10) {
+        this.error = "";
+      }
+    },
   },
 };
 </script>
@@ -135,7 +158,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 15px;
 }
 .input-text {
   border: none;
@@ -180,5 +202,11 @@ select:focus {
   margin-right: 5px;
   margin-left: 4px;
   cursor: default;
+}
+.error {
+  padding-top: 10px;
+  height: 15px;
+  color: rgb(180, 24, 24);
+  font-size: 12px;
 }
 </style>

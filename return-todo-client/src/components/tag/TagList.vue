@@ -1,6 +1,6 @@
 <template>
   <div class="tag-list">
-    <TagItem :tag="tag" v-for="(tag, idx) in tagList" :key="idx" />
+    <TagItem :tag="tag" v-for="(tag, idx) in tagList" :key="tagList[idx].id" />
   </div>
 </template>
 
