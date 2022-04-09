@@ -2,7 +2,11 @@ import { tag } from "@/api";
 const state = {
   tagList: [],
 };
-const getters = {};
+const getters = {
+  getTagTotalNum(state) {
+    return state.tagList.length;
+  },
+};
 const mutations = {
   setTagList(state, payload) {
     state.tagList = payload;

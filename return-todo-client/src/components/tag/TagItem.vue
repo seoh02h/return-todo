@@ -1,23 +1,20 @@
 <template>
   <div class="tag-item">
-    <div v-if="editable" class="error">{{ error }}</div>
+    <div class="error">{{ error }}</div>
     <div class="tag" :class="{ edit: editable }">
       <input class="input-color" type="color" v-model="tag.colorCode" :disabled="!editable" />
       <input
         class="input-text"
         ref="input"
         type="text"
-        @keyup.enter="update(tag.id, tag.colorCode, tag.name)"
-        v-model="tag.name"
+        @keyup.enter="update"
+        :value="name"
+        @input="changeInput"
         :readonly="!editable"
       />
 
       <i v-if="!editable" v-on:click="editableTag" class="fa fa-pen fa-sm"></i>
-      <i
-        v-if="editable"
-        @click="update(tag.id, tag.colorCode, tag.name)"
-        class="fa fa-check fa-sm"
-      ></i>
+      <i v-if="editable" @click="update" class="fa fa-check fa-sm"></i>
       <i @click="openModal" class="fa fa-trash-alt fa-sm"></i>
     </div>
     <DeleteModal :show="showModal" @close="showModal = false" @remove="remove(tag.id)">
@@ -39,6 +36,8 @@ export default {
   props: ["tag"],
   data() {
     return {
+      colorCode: "",
+      name: "",
       editable: false,
       showModal: false,
       error: "",
@@ -53,19 +52,22 @@ export default {
       this.editable = true;
       this.$refs.input.focus();
     },
-    update(id, colorCode, name) {
-      if (name.length === 0) {
+    changeInput(e) {
+      this.name = e.target.value;
+    },
+    update() {
+      if (this.name.length === 0) {
         this.error = "태그를 1 글자 이상 입력하세요";
       } else {
         this.error = "";
-        this.updateTag({ id, colorCode, name });
+        this.updateTag({ id: this.tag.id, colorCode: this.colorCode, name: this.name });
         this.editable = false;
       }
     },
     remove(id) {
       this.deleteTag({ id });
-
       this.showModal = false;
+      this.getTodoList();
     },
     closeEdit() {
       this.editable = false;
@@ -81,6 +83,18 @@ export default {
     EventBus.$on("tagEditClose", () => {
       this.closeEdit();
     });
+    this.colorCode = this.tag.colorCode;
+    this.name = this.tag.name;
+  },
+  watch: {
+    name: function (value) {
+      if (value.length > 6) {
+        this.error = "태그는 6 글자를 초과할 수 없습니다.";
+        this.name = value.slice(0, 6);
+      } else if (value.length < 6) {
+        this.error = "";
+      }
+    },
   },
 };
 </script>
@@ -99,7 +113,7 @@ export default {
   width: 430px;
   align-items: center;
   justify-content: center;
-  height: 34px;
+  height: 30px;
   border-radius: 20px;
 }
 .input-color {
@@ -119,7 +133,7 @@ input::-webkit-color-swatch {
 .input-text {
   border: none;
   background: transparent;
-  font-size: 20px;
+  font-size: 18px;
   width: 300px;
 }
 
@@ -149,5 +163,6 @@ i:hover {
 .error {
   font-size: 12px;
   width: 300px;
+  height: 15px;
 }
 </style>

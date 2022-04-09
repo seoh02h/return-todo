@@ -8,14 +8,7 @@
           </div>
           <div class="modal-body">
             <img src="@/assets/images/todo.png" width="60px" />
-            <div class="todo-input-form">
-              <input
-                ref="input"
-                v-model="formContent"
-                type="text"
-                class="input-text"
-                placeholder="할 일을 입력하세요"
-              />
+            <div class="tag-input-form">
               <div class="tag-color" :style="tagColor"></div>
               <select class="select-tag" v-model="formTag">
                 <option value="null">선택안함</option>
@@ -24,6 +17,14 @@
                 </option>
               </select>
             </div>
+
+            <input
+              ref="input"
+              v-model="formContent"
+              type="text"
+              class="input-text"
+              placeholder="할 일을 입력하세요"
+            />
           </div>
 
           <div class="modal-footer">
@@ -171,7 +172,7 @@ export default {
   padding: 2px;
   padding-bottom: 10px;
 }
-.todo-input-form {
+.tag-input-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,7 +182,7 @@ export default {
   border: none;
   background-color: rgba(128, 128, 128, 0.191);
   border-radius: 20px;
-  width: 160px;
+  width: 220px;
   height: 33px;
   margin: 5px;
   font-size: 14px;
@@ -200,12 +201,13 @@ select {
   -moz-appearance: none;
   appearance: none;
   border-radius: 4px;
-  width: 50px;
+  width: 150px;
   height: 30px;
   border: none;
   cursor: pointer;
   color: black;
   font-size: 14px;
+  margin-right: 70px;
 }
 select:focus {
   outline: none;

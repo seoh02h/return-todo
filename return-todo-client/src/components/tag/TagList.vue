@@ -26,6 +26,5 @@ export default {
 <style scoped>
 .tag-item {
   margin: 0 auto;
-  margin-bottom: 15px;
 }
 </style>

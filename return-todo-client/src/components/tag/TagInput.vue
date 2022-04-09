@@ -9,7 +9,8 @@
         class="input-text"
         @keyup.enter="addTag"
         type="text"
-        v-model="name"
+        @input="changeInput"
+        :value="name"
         placeholder="태그를 입력하세요"
       />
       <i @click="addTag" class="far fa-plus-square"></i>
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import EventBus from "@/eventBus.js";
 export default {
   data() {
@@ -28,16 +29,24 @@ export default {
       error: "",
     };
   },
+  computed: {
+    ...mapGetters("tag", ["getTagTotalNum"]),
+  },
   methods: {
     ...mapActions("tag", ["getTagList", "saveTag"]),
     addTag() {
-      if (this.name.length === 0) {
+      if (this.getTagTotalNum == 8) {
+        this.error = "태그는 최대 8개 생성 가능합니다.";
+      } else if (this.name.length === 0) {
         this.error = "태그를 1 글자 이상 입력하세요";
       } else {
         this.error = "";
         this.saveTag({ colorCode: this.colorCode, name: this.name });
         this.clearInput();
       }
+    },
+    changeInput(e) {
+      this.name = e.target.value;
     },
     clearInput() {
       this.colorCode = "#ffffff";
@@ -50,12 +59,22 @@ export default {
   created() {
     this.error = "";
   },
+  watch: {
+    name: function (value) {
+      if (value.length > 6) {
+        this.error = "태그는 6 글자를 초과할 수 없습니다.";
+        this.name = value.slice(0, 6);
+      } else if (value.length < 6) {
+        this.error = "";
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .tag-input {
-  height: 120px;
+  height: 80px;
 }
 .input-form {
   margin: auto;
