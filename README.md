@@ -16,7 +16,7 @@ KHU Return Web Study Project 1
 ## ERD
 
 <p align="center">
-    <img src="./image/erd.png"width="30%" >
+    <img src="./image/todo-erd.png"width="30%" >
 </p>
 
 ## 주소
