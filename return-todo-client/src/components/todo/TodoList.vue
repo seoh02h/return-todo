@@ -27,6 +27,7 @@ export default {
 .todo-list {
   margin-top: 25px;
   overflow: scroll;
+  overflow-x: hidden;
   height: 330px;
   margin-bottom: 10px;
 }

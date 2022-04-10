@@ -85,6 +85,7 @@ export default {
   display: flex;
   align-items: center;
   overflow: auto;
+  overflow-y: hidden;
   white-space: nowrap;
 }
 .search-complete {

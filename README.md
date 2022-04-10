@@ -2,7 +2,6 @@
 KHU Return Web Study Project 1
 
 ## 기술스택
-
 ![Java](https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
@@ -12,6 +11,7 @@ KHU Return Web Study Project 1
 ![AWS-EC2](https://img.shields.io/badge/aws_ec2-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![AWS-S3](https://img.shields.io/badge/aws_s3-%23470f.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![AWS-RDS](https://img.shields.io/badge/aws_rds-%23404d59.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![GITHUB_ACTIONS](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
 ## ERD
 
