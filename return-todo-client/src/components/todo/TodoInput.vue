@@ -93,10 +93,10 @@ export default {
   },
   watch: {
     content: function (value) {
-      if (value.length > 10) {
+      if (value.length > 20) {
         this.error = "할 일은 10 글자를 초과할 수 없습니다.";
-        this.content = value.slice(0, 10);
-      } else if (value.length < 10) {
+        this.content = value.slice(0, 20);
+      } else if (value.length < 20) {
         this.error = "";
       }
     },
